@@ -1,5 +1,6 @@
-public class DivideByZeroException extends Exception{
-    public DivideByZeroException() {
+public class DivideByZeroException extends Exception {
+
+	public DivideByZeroException() {
 		super("Divisione per zero!");
 	} 
 	
