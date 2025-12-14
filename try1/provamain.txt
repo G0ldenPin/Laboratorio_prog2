@@ -1,0 +1,28 @@
+Scanner sc = new Scanner(System.in);
+
+        while (sc.hasNext()){
+            String tipo = sc.next();
+            switch (tipo){
+                case "cuboide":
+                    double latoA = sc.nextDouble();
+                    double latoB = sc.nextDouble();
+                    double latoC = sc.nextDouble();
+                    String liquido = sc.next();
+                    double mlAttuale = sc.nextDouble();
+
+                    Contenitore q = new Cuboide(latoA, latoB, latoC, liquido, mlAttuale);
+
+                case "sfera":
+                    double r1 = sc.nextDouble();
+                    String liquido1 = sc.next();
+                    double mlAttuale1 = sc.nextDouble();
+
+                    Sfera s = new Sfera(r1, liquido1, mlAttuale1); 
+                case "cilindro":
+                    double h = sc.nextDouble();
+                    double r2 = sc.nextDouble();
+                    String liquido2 = sc.next();
+                    double mlAttuale2 = sc.nextDouble();
+
+                    Cilindro c = new Cilindro(h, r2, liquido2, mlAttuale2);
+            }
