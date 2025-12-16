@@ -1,64 +1,59 @@
-import java.util.Objects;
+import java.util.NoSuchElementException;
 
-public abstract class Contenuto implements Comparable<Contenuto>, Cloneable {
-//OVERVIEW: classe astratta che modella un Contenuto di un gestionale documenti
+public class Contenuto {
+//OVERVIEW: la classe modella un contenuto generico con un nome
 
-//attributes
-	private final String nome;
+//attributi
+    private String nome;
+    private final int dimensione;
+    private String superdir = null;
+    
 
-//methods
-	public Contenuto(String nome) {
-	//MODIFIES: this
-	//EFFECTS: inizializza Contenuto con nome
-	//         se nome null lancia NullPointerException
-	//         se nome vuoto lancia IllegalArgumentException
+//costruttore
+    public Contenuto(String nome, int dimensione, String superdir) throws NullPointerException, IllegalArgumentException{
+        if (nome==null){
+            throw new NullPointerException("nome nullo");
+        } if (nome==""){
+            throw new IllegalArgumentException("nome vuoto");
+        }
+        this.nome = nome;
+        this.dimensione = dimensione;
+        
+    }
 
-		if(nome == null)
-			throw new NullPointerException("ECCEZIONE:nome null");
+//metodi
+    //set-get
+    public void setNome(String nome){
+        this.nome = nome;
+    }
 
-		if(nome.equals(""))
-			throw new IllegalArgumentException("ECCEZIONE:nome vuoto");
+    public String getNome(){
+        return this.nome;
+    }
 
-		this.nome = nome;
-	}
+    public int getDimensione(){
+        return this.dimensione;
+    }
 
-	public String getNome() {
-		return nome;
-	}
+    public void setSuperdir(String superdir){
+        this.superdir = superdir;
+    }
 
-	public abstract int dimensione();
-	//EFFECTS: restituisce la dimensione del Contenuto
+    public String getSuperdir() throws NoSuchElementException {
+    //EFFECTS: ritorna la propria supercartella
+    //          se la supercartella non esiste lancia nosuchelement exception
+        if (this.superdir == null) {
+            throw new NoSuchElementException("Non esiste una supercartella per questa cartella");
+        } else {
+            return this.superdir;
+        }
+    }
 
-	@Override
-	public int compareTo(Contenuto o) throws NullPointerException {
-		if(o == null)
-			throw new NullPointerException("ECCEZIONE:comparando null");
-
-		return Integer.compare(dimensione(), o.dimensione());
-	}
-
-	@Override
-	public String toString() {
-		return nome + " dimensione: " + dimensione();
-	}
-
-	@Override
-	public Contenuto clone() {
-		try {
-			return (Contenuto) super.clone();
-		} catch (CloneNotSupportedException e) {
-			return null;
-		}
-	}
-
-	@Override
-	public boolean equals(Object o) {
-		if(this == o)
-			return true;
-
-		if(!(o instanceof Contenuto))
-			return false;
-
-		return ((Contenuto) o).getNome().equals(nome);
-	}
+    /*public boolean equals(Contenuto c1, Contenuto c2){
+        if (c1.nome == c2.nome){
+            return true;
+        } else {
+            return false;
+        }
+    }*/
 }

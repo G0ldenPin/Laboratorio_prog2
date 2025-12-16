@@ -9,8 +9,8 @@ In un sistema documentale un `Contenuto`, definito dal suo nome (che non può es
 Un `Documento` è definito anche dalla sua dimensione, nota alla creazione del documento.
 
 Invece una `Cartella` può contenere altri contenuti e tiene traccia anche della propria `Cartella` superiore (se presente). Una `Cartella` presenta le seguenti funzionalità:
-* permette di restituire la sua dimensione (somma delle dimensioni di tutti i suoi contenuti)
-* permette di restituire la propria `Cartella` superiore
+* OKpermette di restituire la sua dimensione (somma delle dimensioni di tutti i suoi contenuti)
+* OKpermette di restituire la propria `Cartella` superiore
 	* Se non ve n'è una dovrà lanciare una `NoSuchElementException`
 * permette di restituire una `Cartella` contenuta dato il suo nome
 	* Nel caso il nome non corrisponda a un `Contenuto` dovrà lanciare una `NoSuchElementException`

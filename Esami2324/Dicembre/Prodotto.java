@@ -1,87 +1,56 @@
-public class Prodotto implements Comparable<Prodotto>, Cloneable {
-//OVERVIEW: modella Prodotto di un Erogatore
+package soluzioneMia;
 
-//attributes
-	public final String nome;
-	private double prezzo;
+import java.util.ArrayList;
 
-//methods
-	public Prodotto(String nome, double prezzo) throws NullPointerException, IllegalArgumentException {
-	//MODIFIES: this
-	//EFFECTS: inizializza this con nome e prezzo
-	//         se nome null lancia NullPointerException
-	//         se nome vuoto o prezzo <=0 lancia IllegalArgumentException
-		if(nome == null)
-			throw new NullPointerException("nome null");
+public class Prodotto {
+//OVERVIEW: la classe modella un prodotto definito da nome e prezzo
 
-		if(nome.equals(""))
-			throw new IllegalArgumentException("nome vuoto");
+//attributi
+    protected String nome;
+    protected double prezzo;
 
-		if(prezzo <= 0)
-			throw new IllegalArgumentException("prezzo <= 0");
+//costruttore
+    public Prodotto(String nome, double prezzo){
+        this.nome = nome;
+        this.prezzo = prezzo;
+    }
 
-		this.nome = nome;
-		this.prezzo = prezzo;
+//metodi
 
-		assert repOK();
-	}
+//set-get
+    public void setPrezzo(double prezzo){
+        this.prezzo = prezzo;
+    }
 
-	public double getPrezzo() {
-		return prezzo;
-	}
+    public void setNome(String nome){
+        this.nome = nome;
+    }
 
-	public void setPrezzo(double prezzo) throws IllegalArgumentException {
-		if(prezzo <= 0)
-			throw new IllegalArgumentException("prezzo <= 0");
+    public double getPrezzo(){
+        return this.prezzo;
+    }
 
-		this.prezzo = prezzo;
-	}
+    public String getNome(){
+        return this.nome;
+    }
 
-	@Override
-	public int compareTo(Prodotto o) {
-		return this.nome.compareTo(o.nome);
-	}
+    public String modPrice(Prodotto p, double prezzoNuovo) throws NullPointerException, IllegalArgumentException {
+        if (p == null) {
+            throw new NullPointerException("Prodotto nullo");
+        } else if (!(prezzoNuovo instanceof double)) {
+            throw new IllegalArgumentException("Inserisci un prezzo in double");
+        } else {
+            p.setPrezzo(prezzoNuovo);
+            return "Prezzo cambiato correttamente";
+        }
+    }
 
-	@Override
-	public boolean equals(Object o) {
-		if(this == o)
-			return true;
+    public ArrayList<Prodotto> ordinaProdotti(ArrayList<Prodotto> prodotti){
+        for (Prodotto p : prodotti) {
+            
+        }
+    }
 
-		if(!(o instanceof Prodotto))
-			return false;
+    //inserisci main che crea l'arraylist ogni volta che un prodotto viene inserito
 
-		return ((Prodotto) o).nome.equals(this.nome);
-	}
-
-	@Override
-	public int hashCode() {
-		return this.nome.hashCode();
-	}
-
-	@Override
-	public String toString() {
-		return "Prodotto: " + this.nome + " prezzo: " + this.prezzo;
-	}
-
-	@Override
-	protected Object clone() {
-		try {
-			return super.clone();
-		} catch(CloneNotSupportedException e) {
-			return null;
-		}
-	}
-
-	public boolean repOK() {
-		if(nome == null)
-			return false;
-
-		if(nome.equals(""))
-			return false;
-
-		if(prezzo <= 0)
-			return false;
-
-		return true;
-	}
 }
